@@ -1,2 +1,18 @@
 ---
 # tasks file for cp-dbsubnetgroup
+- name: Create a Crossplane DBSubnetGroup
+  k8s:
+    state: "{{ state }}"
+    definition:
+      apiVersion: database.aws.crossplane.io/v1beta1
+      kind: DBSubnetGroup
+      metadata:
+        name: "{{ name }}"
+        namespace: "{{ namespace }}"
+      spec:
+        forProvider:
+          description: "{{ description }}"
+          region: "{{ region }}"
+          subnetIds:
+            - "{{ subnetId1 }}"
+
